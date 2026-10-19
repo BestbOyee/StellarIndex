@@ -5,7 +5,8 @@
     "description": "Search confirmed exoplanets, filter telemetry data, and visualize real-time stellar transit light curves.",
     "permissions": [
       "storage",
-      "alarms"
+      "alarms",
+      "downloads"
     ],
     "host_permissions": [
       "https://exoplanetarchive.ipac.caltech.edu/*"
