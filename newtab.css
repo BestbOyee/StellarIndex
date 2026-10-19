@@ -18,7 +18,7 @@
     width: 100vw;
   }
   
-  /* Sidebar */
+  /* Sidebar (Left): Search, Filters, Stats */
   .sidebar {
     width: 380px;
     background: #161b22;
@@ -27,6 +27,7 @@
     flex-direction: column;
     padding: 20px;
     gap: 16px;
+    overflow-y: auto;
   }
   
   .brand h1 {
@@ -83,6 +84,22 @@
     cursor: pointer;
   }
   
+  .select-dropdown {
+    width: 100%;
+    padding: 6px 10px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    color: #f0f6fc;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .select-dropdown:focus {
+    border-color: #58a6ff;
+  }
+  
   .btn-secondary {
     background: #30363d;
     color: #c9d1d9;
@@ -99,61 +116,7 @@
     background: #484f58;
   }
   
-  .results-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  
-  .results-container h3 {
-    font-size: 0.9rem;
-    color: #8b949e;
-    margin-bottom: 8px;
-  }
-  
-  #planetList {
-    list-style: none;
-    overflow-y: auto;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding-right: 4px;
-  }
-  
-  #planetList li {
-    background: #21262d;
-    padding: 10px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: all 0.2s;
-  }
-  
-  #planetList li:hover {
-    border-color: #58a6ff;
-    background: #30363d;
-  }
-  
-  #planetList li.active {
-    border-color: #58a6ff;
-    background: #1f6feb33;
-  }
-  
-  .planet-item-title {
-    font-weight: 600;
-    color: #58a6ff;
-    font-size: 0.95rem;
-  }
-  
-  .planet-item-sub {
-    font-size: 0.8rem;
-    color: #8b949e;
-    margin-top: 2px;
-  }
-  
-  /* Main Content */
+  /* Main Content (Right) */
   .main-content {
     flex: 1;
     display: flex;
@@ -185,6 +148,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     flex: 1;
+    min-height: 500px;
   }
   
   .card {
@@ -222,30 +186,83 @@
     font-style: italic;
   }
   
+  /* Telemetry Grid (Stats in Sidebar) */
   .telemetry-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
   }
   
   .telemetric-metric {
     background: #21262d;
-    padding: 12px;
+    padding: 10px;
     border-radius: 6px;
     border: 1px solid #30363d;
   }
   
   .metric-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #8b949e;
     text-transform: uppercase;
   }
   
   .metric-value {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #58a6ff;
     margin-top: 4px;
+  }
+  
+  /* Results Card & List */
+  .results-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .results-container {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 520px;
+    padding-right: 4px;
+  }
+  
+  #planetList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  #planetList li {
+    background: #21262d;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  #planetList li:hover {
+    border-color: #58a6ff;
+    background: #30363d;
+  }
+  
+  #planetList li.active {
+    border-color: #58a6ff;
+    background: #1f6feb33;
+  }
+  
+  .planet-item-title {
+    font-weight: 600;
+    color: #58a6ff;
+    font-size: 1rem;
+  }
+  
+  .planet-item-sub {
+    font-size: 0.85rem;
+    color: #8b949e;
+    margin-top: 3px;
   }
   
   .canvas-wrapper {
@@ -259,7 +276,11 @@
     overflow: hidden;
   }
   
-  #transitCanvas {
+  /* Position canvases absolutely inside the wrapper to prevent off-center stretching */
+  #transitCanvas, #orbitCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: block;
@@ -269,4 +290,158 @@
     font-size: 0.75rem;
     color: #8b949e;
     text-align: center;
+  }
+  .checkbox-label {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px !important;
+    color: #f0f6fc;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    accent-color: #3fb950;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .esi-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+  
+  .esi-high {
+    background: #1f883d33;
+    color: #3fb950;
+    border: 1px solid #1f883d;
+  }
+  
+  .esi-moderate {
+    background: #9e6a0333;
+    color: #d29922;
+    border: 1px solid #9e6a03;
+  }
+  
+  .esi-low {
+    background: #30363d;
+    color: #8b949e;
+    border: 1px solid #30363d;
+  }
+  /* Inline ESI badge inside catalog list items */
+.planet-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .esi-list-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+  
+  /* Color Coding: Green (High), Yellow (Moderate), Red (Low) */
+  .esi-high {
+    background: #1f883d33;
+    color: #3fb950;
+    border: 1px solid #1f883d;
+  }
+  
+  .esi-moderate {
+    background: #9e6a0333;
+    color: #d29922;
+    border: 1px solid #9e6a03;
+  }
+  
+  .esi-low {
+    background: #da363333;
+    color: #f85149;
+    border: 1px solid #da3633;
+  }
+  /* Comparator styling */
+.comparator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .compare-column {
+    background: #21262d;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .compare-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #58a6ff;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 4px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .compare-metric {
+    font-size: 0.8rem;
+    color: #c9d1d9;
+  }
+  
+  .compare-metric span {
+    font-weight: 600;
+    color: #f0f6fc;
+  }
+  
+  .pinned-banner {
+    grid-column: span 2;
+    background: #1f6feb22;
+    border: 1px solid #1f6feb;
+    color: #58a6ff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .btn-danger {
+    background: #da363333;
+    color: #f85149;
+    border: 1px solid #da3633;
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+  }
+  
+  .btn-danger:hover {
+    background: #da363366;
+  }
+  .visualizations-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+  }
+  .export-btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
   }
