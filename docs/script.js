@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (filtered.length === 0) {
       planetListEl.innerHTML = `<li style="justify-content:center; color:#8b949e;">No exoplanets found.</li>`;
+      telemetryPanel.innerHTML = `<div class="telemetry-placeholder">No matching world found.</div>`;
       return;
     }
 
@@ -51,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTelemetry(planet);
       });
 
-      // Auto-select first result by default
       if (idx === 0) {
         li.classList.add("active");
         renderTelemetry(planet);
