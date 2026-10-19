@@ -445,3 +445,30 @@
     gap: 8px;
     margin-top: 4px;
   }
+  .toggle-group {
+    display: flex;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .btn-toggle {
+    background: transparent;
+    color: #8b949e;
+    border: none;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .btn-toggle:hover {
+    color: #c9d1d9;
+  }
+  
+  .btn-toggle.active {
+    background: #1f6feb;
+    color: #f0f6fc;
+  }

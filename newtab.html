@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Left Sidebar: Search, Filters, & Telemetry Stats -->
+    <!-- Left Sidebar: Search, Filters, Export, & Telemetry Stats -->
     <aside class="sidebar">
       <div class="brand">
         <h1>🔭 StellarIndex</h1>
@@ -50,7 +50,7 @@
         <button id="resetFilters" class="btn-secondary">Reset Filters</button>
       </div>
 
-      <!-- New Export Dataset Section -->
+      <!-- Export Dataset Section -->
       <div class="filters">
         <h3>Export Dataset</h3>
         <div class="export-btn-grid">
@@ -59,8 +59,7 @@
         </div>
       </div>
 
-      <!-- Telemetry Stats Card moved to the left sidebar -->
-      <!-- Telemetry Stats Card with Comparator Support -->
+      <!-- Target Telemetry Card with Comparator Support -->
       <div class="card telemetry-card">
         <div class="card-header">
           <h2>Target Telemetry</h2>
@@ -72,7 +71,7 @@
       </div>
     </aside>
 
-    <!-- Main Content (Right): Exoplanet Results List & Transit Canvas -->
+    <!-- Main Content (Right): Exoplanet Results List & Visualizations Stack -->
     <main class="main-content">
       <header class="mission-header">
         <div class="telemetry-pill">STATUS: ONLINE</div>
@@ -93,18 +92,21 @@
           </div>
         </div>
 
-        <!-- Right Column: Visualizations Stack (Transit Curve + Orbital Simulator) -->
+        <!-- Right Column: Visualizations Stack (Transit/Spectrum + Orbital Simulator) -->
         <div class="visualizations-stack">
-          <!-- Photometric Transit Light Curve Canvas -->
+          <!-- Photometric Transit Light Curve / Transmission Spectrum Canvas -->
           <div class="card canvas-card">
             <div class="card-header">
-              <h2>Transit Light Curve</h2>
-              <span id="targetNameBadge" class="badge">No Target Selected</span>
+              <h2>Transit & Atmosphere <span id="targetNameBadge" class="badge" style="margin-left: 8px;">No Target Selected</span></h2>
+              <div class="toggle-group">
+                <button id="showLightCurve" class="btn-toggle active">Light Curve</button>
+                <button id="showSpectrum" class="btn-toggle">Spectrum</button>
+              </div>
             </div>
             <div class="canvas-wrapper">
               <canvas id="transitCanvas"></canvas>
             </div>
-            <p class="canvas-caption">Simulated normalized stellar flux dip during planetary transit crossing.</p>
+            <p id="canvasCaption" class="canvas-caption">Simulated normalized stellar flux dip during planetary transit crossing.</p>
           </div>
 
           <!-- Orbital Mechanics Simulator Canvas -->

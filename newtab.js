@@ -3,6 +3,7 @@ let selectedPlanet = null;
 let pinnedPlanet = null;
 let currentFilteredPlanets = [];
 let animationFrameId = null;
+let activeView = "lightcurve"; // "lightcurve" or "spectrum"
 
 document.addEventListener("DOMContentLoaded", () => {
   loadPlanets();
@@ -52,6 +53,8 @@ function setupEventListeners() {
   const pinCompareBtn = document.getElementById("pinCompareBtn");
   const exportJsonBtn = document.getElementById("exportJsonBtn");
   const exportCsvBtn = document.getElementById("exportCsvBtn");
+  const showLightCurveBtn = document.getElementById("showLightCurve");
+  const showSpectrumBtn = document.getElementById("showSpectrum");
 
   if (searchInput) searchInput.addEventListener("input", filterAndRenderPlanets);
   if (distFilter) distFilter.addEventListener("input", (e) => {
@@ -80,6 +83,24 @@ function setupEventListeners() {
 
   if (exportJsonBtn) exportJsonBtn.addEventListener("click", exportDataAsJSON);
   if (exportCsvBtn) exportCsvBtn.addEventListener("click", exportDataAsCSV);
+
+  if (showLightCurveBtn && showSpectrumBtn) {
+    showLightCurveBtn.addEventListener("click", () => {
+      activeView = "lightcurve";
+      showLightCurveBtn.classList.add("active");
+      showSpectrumBtn.classList.remove("active");
+      document.getElementById("canvasCaption").textContent = "Simulated normalized stellar flux dip during planetary transit crossing.";
+      if (selectedPlanet) renderTransitLightCurve(selectedPlanet);
+    });
+
+    showSpectrumBtn.addEventListener("click", () => {
+      activeView = "spectrum";
+      showSpectrumBtn.classList.add("active");
+      showLightCurveBtn.classList.remove("active");
+      document.getElementById("canvasCaption").textContent = "Simulated JWST transmission spectrum showing molecular absorption features (e.g., H2O, CO2).";
+      if (selectedPlanet) renderTransmissionSpectrum(selectedPlanet);
+    });
+  }
 
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
@@ -171,7 +192,9 @@ function renderPlanetList(planets) {
 
 function selectPlanet(planet) {
   selectedPlanet = planet;
-  document.getElementById("targetNameBadge").textContent = planet.pl_name;
+  
+  const badgeEl = document.getElementById("targetNameBadge");
+  if (badgeEl) badgeEl.textContent = planet.pl_name;
   
   const pinBtn = document.getElementById("pinCompareBtn");
   if (pinBtn) pinBtn.style.display = "block";
@@ -253,7 +276,11 @@ function selectPlanet(planet) {
     `;
   }
 
-  renderTransitLightCurve(planet);
+  if (activeView === "lightcurve") {
+    renderTransitLightCurve(planet);
+  } else {
+    renderTransmissionSpectrum(planet);
+  }
   startOrbitSimulation(planet);
 }
 
@@ -316,6 +343,67 @@ function renderTransitLightCurve(planet) {
   ctx.fillText("Normalized Flux (1.0)", 12, 20);
   ctx.fillText("Time (Orbital Phase)", width - 110, height - 12);
 }
+
+function renderTransmissionSpectrum(planet) {
+    const canvas = document.getElementById("transitCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+  
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    if (width === 0 || height === 0) return;
+  
+    canvas.width = width;
+    canvas.height = height;
+  
+    ctx.clearRect(0, 0, width, height);
+  
+    // Background grid
+    ctx.strokeStyle = "rgba(48, 54, 61, 0.5)";
+    ctx.lineWidth = 1;
+    for (let x = 0; x < width; x += 40) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+    }
+    for (let y = 0; y < height; y += 30) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+    }
+  
+    const baselineY = height * 0.65;
+    const scaleY = height * 0.4;
+  
+    // Make spectrum unique to the selected planet using its radius and a string hash for variance
+    const radiusFactor = planet.pl_rade ? Math.min(2.0, Math.max(0.4, planet.pl_rade / 2.5)) : 1.0;
+    const nameHash = planet.pl_name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const phaseOffset = (nameHash % 10) * 0.04;
+  
+    ctx.strokeStyle = "#3fb950";
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = "#3fb950";
+    ctx.shadowBlur = 10;
+    ctx.beginPath();
+  
+    for (let x = 0; x <= width; x++) {
+      let wavelength = 0.5 + (x / width) * 4.5;
+      
+      // Dynamic molecular absorption shaped by the planet's unique telemetry
+      let absorption = (0.15 * Math.sin((wavelength + phaseOffset) * 2.5) 
+                     + 0.25 * Math.exp(-Math.pow(wavelength - (1.4 + phaseOffset * 0.2), 2) / 0.05) 
+                     + 0.20 * Math.exp(-Math.pow(wavelength - (1.9 - phaseOffset * 0.2), 2) / 0.08)
+                     + 0.30 * Math.exp(-Math.pow(wavelength - 4.2, 2) / 0.06)) * radiusFactor;
+  
+      let y = baselineY - (absorption * scaleY);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  
+    // Axis Labels with planet name confirmation
+    ctx.fillStyle = "#8b949e";
+    ctx.font = "10px sans-serif";
+    ctx.fillText(`JWST Spectrum: ${planet.pl_name}`, 12, 20);
+    ctx.fillText("Wavelength (µm) →", width - 110, height - 12);
+  }
 
 function startOrbitSimulation(planet) {
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
