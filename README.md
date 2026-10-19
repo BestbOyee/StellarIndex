@@ -29,4 +29,16 @@
 
 1. Clone or download this repository to your local machine:
    ```bash
-   git clone [https://github.com/your-username/stellar-index.git](https://github.com/your-username/stellar-index.git)
+   git clone https://github.com/BestbOyee/StellarIndex
+
+2. Open Google Chrome, type or paste the following query into your address bar, and press Enter:
+   ```bash
+   chrome://extensions/ 
+
+3. In the top-right corner of the Extensions page, toggle the Developer mode switch to ON.
+
+4. Click the Load unpacked button that appears in the top-left corner.
+
+5. Navigate to and select your local stellar-index project folder (the directory containing manifest.json).
+
+6. Open a brand new tab in Google Chrome, and StellarIndex Mission Control will launch automatically!
