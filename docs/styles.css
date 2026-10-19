@@ -308,3 +308,150 @@
     color: #8b949e;
     font-size: 0.85rem;
   }
+  /* Interactive Search Demo Section */
+.demo-section {
+  padding: 80px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.demo-wrapper {
+  margin-top: 24px;
+  background: rgba(17, 24, 39, 0.75);
+  border: 1px solid rgba(48, 54, 61, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+.search-demo-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+#demoSearchInput {
+  flex: 1;
+  padding: 10px 14px;
+  background: #090d13;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  color: #f0f6fc;
+  font-size: 0.9rem;
+}
+
+#demoSearchInput:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+}
+
+.demo-select {
+  background: #090d13;
+  color: #f0f6fc;
+  border: 1px solid #30363d;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.demo-search-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  min-height: 240px;
+}
+
+.demo-results-list {
+  background: #05080f;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 10px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+#demoPlanetList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#demoPlanetList li {
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid #30363d;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+#demoPlanetList li:hover, #demoPlanetList li.active {
+  border-color: #58a6ff;
+  background: rgba(31, 111, 235, 0.2);
+}
+
+.demo-item-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.demo-esi-badge {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.esi-badge-high { background: rgba(63, 185, 80, 0.2); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.4); }
+.esi-badge-mod { background: rgba(210, 153, 34, 0.2); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.4); }
+.esi-badge-low { background: rgba(248, 81, 73, 0.2); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.4); }
+
+.demo-telemetry-panel {
+  background: #05080f;
+  border: 1px solid #21262d;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.telemetry-placeholder {
+  color: #8b949e;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.demo-telemetry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.demo-telemetry-item {
+  background: #090d13;
+  border: 1px solid #21262d;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.demo-telemetry-label {
+  font-size: 0.7rem;
+  color: #8b949e;
+  text-transform: uppercase;
+}
+
+.demo-telemetry-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f0f6fc;
+  margin-top: 2px;
+}

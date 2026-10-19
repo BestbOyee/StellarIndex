@@ -17,7 +17,7 @@
       <a href="#features">Features</a>
       <a href="#demo">Live Interactive Demo</a>
       <a href="#installation">Installation</a>
-      <a href="https://github.com/your-username/stellar-index" target="_blank" class="nav-btn-gh">GitHub Repo</a>
+      <a href="https://github.com/BestbOyee/StellarIndex" target="_blank" class="nav-btn-gh">GitHub Repo</a>
     </div>
   </nav>
 
@@ -91,19 +91,31 @@
   </section>
 
   <!-- Interactive Live Preview Section -->
+  <!-- Interactive Live Search & Telemetry Preview Section -->
   <section id="demo" class="demo-section">
-    <h2>Interactive Telemetry Preview</h2>
-    <p>Select a world to simulate real-time transit telemetry</p>
+    <h2>Interactive Catalog & Telemetry Search</h2>
+    <p>Test the headlining feature: real-time search, filtering, and Earth Similarity Index (ESI) telemetry scoring.</p>
     
     <div class="demo-wrapper">
-      <div class="demo-selector">
-        <button class="planet-btn active" data-planet="kepler">Kepler-186 f</button>
-        <button class="planet-btn" data-planet="trappist">TRAPPIST-1 e</button>
-        <button class="planet-btn" data-planet="proxima">Proxima Cen b</button>
+      <div class="search-demo-bar">
+        <input type="text" id="demoSearchInput" placeholder="Type to search (e.g., Kepler, TRAPPIST, Proxima)...">
+        <select id="demoEsiFilter" class="demo-select">
+          <option value="all">All ESI Scores</option>
+          <option value="high">High Habitability (ESI ≥ 0.7)</option>
+          <option value="moderate">Moderate Candidates (ESI 0.4 - 0.7)</option>
+        </select>
       </div>
 
-      <div class="demo-display">
-        <canvas id="previewCanvas"></canvas>
+      <div class="demo-search-layout">
+        <div class="demo-results-list">
+          <ul id="demoPlanetList">
+            <!-- Dynamically populated via JS -->
+          </ul>
+        </div>
+
+        <div class="demo-telemetry-panel" id="demoTelemetryPanel">
+          <div class="telemetry-placeholder">Select a planet from search results to inspect live telemetry.</div>
+        </div>
       </div>
     </div>
   </section>
