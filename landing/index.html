@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StellarIndex - Exoplanet Research Chrome Extension</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo">🔭 StellarIndex</span>
+      <span class="version-tag">v1.0</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#demo">Live Interactive Demo</a>
+      <a href="#installation">Installation</a>
+      <a href="https://github.com/your-username/stellar-index" target="_blank" class="nav-btn-gh">GitHub Repo</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="telemetry-badge">MISSION CONTROL FOR EXOPLANET RESEARCH</div>
+      <h1>Explore Confirmed Worlds directly from your Browser</h1>
+      <p>StellarIndex bridges NASA TAP APIs, real-time 2D Keplerian orbital physics, and JWST transmission spectra directly into Chrome's New Tab page.</p>
+      
+      <div class="hero-actions">
+        <a href="#installation" class="btn-primary">Install Extension</a>
+        <a href="#demo" class="btn-secondary">Launch Web Preview</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <div class="hud-frame">
+        <div class="hud-header">
+          <span class="status-dot"></span> TARGET: KEPLER-186 f
+        </div>
+        <div class="hud-body">
+          <div class="metric-row"><span>ESI Score</span><strong class="green-text">0.92 (High Habitability)</strong></div>
+          <div class="metric-row"><span>Orbital Period</span><strong>129.9 Days</strong></div>
+          <div class="metric-row"><span>Stellar Temp</span><strong>3755 K</strong></div>
+          <div class="metric-row"><span>Discovery</span><strong>Transit (2014)</strong></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Feature Showcase Section -->
+  <section id="features" class="features-section">
+    <h2>Engineered for Scientific Exploration</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">🛰️</div>
+        <h3>NASA TAP API Caching</h3>
+        <p>Syncs real telemetry data from NASA's Exoplanet Archive with local caching for instant launch speeds.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">🌱</div>
+        <h3>ESI Habitability Scoring</h3>
+        <p>Automated Earth Similarity Index grading categorizing worlds into color-coded habitability candidates.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">🌌</div>
+        <h3>JWST Spectra & Light Curves</h3>
+        <p>Interactive toggle between photometric transit flux curves and simulated infrared molecular absorption bands.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">🔄</div>
+        <h3>Keplerian Orbit Physics</h3>
+        <p>Top-down HTML5 Canvas 2D orbital simulator scaling revolution speed proportionally to orbital periods.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">⚖️</div>
+        <h3>Side-by-Side Comparator</h3>
+        <p>Pin target exoplanets to evaluate physical parameters and habitability metrics side by side.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">💾</div>
+        <h3>JSON & CSV Exports</h3>
+        <p>Package custom-filtered subsets of exoplanets for external computational analysis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Preview Section -->
+  <section id="demo" class="demo-section">
+    <h2>Interactive Telemetry Preview</h2>
+    <p>Select a world to simulate real-time transit telemetry</p>
+    
+    <div class="demo-wrapper">
+      <div class="demo-selector">
+        <button class="planet-btn active" data-planet="kepler">Kepler-186 f</button>
+        <button class="planet-btn" data-planet="trappist">TRAPPIST-1 e</button>
+        <button class="planet-btn" data-planet="proxima">Proxima Cen b</button>
+      </div>
+
+      <div class="demo-display">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Steps Section -->
+  <section id="installation" class="install-section">
+    <h2>Quick Installation Guide</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Clone Repository</h4>
+        <p>Download or clone the <code>stellar-index</code> source files to your local device.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Developer Mode</h4>
+        <p>Navigate to <code>chrome://extensions/</code> in Chrome and enable "Developer mode".</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Load Unpacked</h4>
+        <p>Click "Load unpacked" and select your local project folder to launch Mission Control.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>StellarIndex • Developed for Exoplanet Exploration & Astrophysical Data Visualization</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
