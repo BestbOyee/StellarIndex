@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "StellarIndex - Exoplanet Search & Transit Engine",
+    "version": "1.0",
+    "description": "Search confirmed exoplanets, filter telemetry data, and visualize real-time stellar transit light curves.",
+    "permissions": [
+      "storage",
+      "alarms"
+    ],
+    "host_permissions": [
+      "https://exoplanetarchive.ipac.caltech.edu/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "chrome_url_overrides": {
+      "newtab": "newtab.html"
+    },
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }

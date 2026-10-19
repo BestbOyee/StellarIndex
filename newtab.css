@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 380px;
+    background: #161b22;
+    border-right: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .brand h1 {
+    font-size: 1.4rem;
+    color: #58a6ff;
+    margin-bottom: 4px;
+  }
+  
+  .brand p {
+    font-size: 0.85rem;
+    color: #8b949e;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 10px 14px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #f0f6fc;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  
+  .search-box input:focus {
+    border-color: #58a6ff;
+  }
+  
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #8b949e;
+    background: #21262d;
+    padding: 12px;
+    border-radius: 6px;
+  }
+  
+  .filters h3 {
+    color: #f0f6fc;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  
+  .filters label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .filters input[type="range"] {
+    accent-color: #58a6ff;
+    cursor: pointer;
+  }
+  
+  .btn-secondary {
+    background: #30363d;
+    color: #c9d1d9;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    transition: background 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background: #484f58;
+  }
+  
+  .results-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .results-container h3 {
+    font-size: 0.9rem;
+    color: #8b949e;
+    margin-bottom: 8px;
+  }
+  
+  #planetList {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 4px;
+  }
+  
+  #planetList li {
+    background: #21262d;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  
+  #planetList li:hover {
+    border-color: #58a6ff;
+    background: #30363d;
+  }
+  
+  #planetList li.active {
+    border-color: #58a6ff;
+    background: #1f6feb33;
+  }
+  
+  .planet-item-title {
+    font-weight: 600;
+    color: #58a6ff;
+    font-size: 0.95rem;
+  }
+  
+  .planet-item-sub {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-top: 2px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0d1117;
+    overflow-y: auto;
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  .mission-header {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .telemetry-pill {
+    background: #21262d;
+    border: 1px solid #30363d;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #3fb950;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+  
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .card h2 {
+    font-size: 1.1rem;
+    color: #f0f6fc;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .badge {
+    background: #30363d;
+    color: #8b949e;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  
+  .placeholder-text {
+    color: #8b949e;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  
+  .telemetry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .telemetric-metric {
+    background: #21262d;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+  }
+  
+  .metric-label {
+    font-size: 0.75rem;
+    color: #8b949e;
+    text-transform: uppercase;
+  }
+  
+  .metric-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #58a6ff;
+    margin-top: 4px;
+  }
+  
+  .canvas-wrapper {
+    flex: 1;
+    width: 100%;
+    min-height: 280px;
+    position: relative;
+    background: #090d13;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+  }
+  
+  #transitCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .canvas-caption {
+    font-size: 0.75rem;
+    color: #8b949e;
+    text-align: center;
+  }
